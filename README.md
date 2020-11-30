@@ -1,3 +1,2 @@
-# Sistema de riego distribuido
-### Sensorización del huerto doméstico
-
+# Sensorización del huerto doméstico
+### Un sistema de riego distribuido 
