@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Zona {{ zona }}{% endblock %}
+
+{% block content %}
+{% if registro %}
+<div class = "container">
+    <h1>Statistics of the irrigation area</h1>
+    <h2>{{ zona}}</h2>
+
+    
+        <!-- bar chart canvas element -->
+<div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <canvas id="temperature" width="350" height="300"></canvas>
+        </div>
+        <div class="col-md-4">
+          <canvas id="humidity" width="350" height="300"></canvas>
+        </div>
+        <div class="col-md-4">
+          <canvas id="soilHumidity" width="350" height="300"></canvas>
+        </div>
+      </div>
+</div>
+{% block javascript %}
+{% if registro %}
+<script >
+    // Global parameters:
+// do not resize the chart canvas when its container does (keep at 600x400px)
+Chart.defaults.global.responsive = false;
+ 
+// define the chart data
+var chartData = {
+  labels : [{% for item in labels %}
+             "{{item}}",
+            {% endfor %}],
+  datasets : [{
+      label: '{{ legend }}',
+      fill: true,
+      lineTension: 0.1,
+      backgroundColor: "rgba(75,12,12,0.1)",
+      borderColor: "rgba(75,12,12,1)",
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: "rgba(75,12,12,1)",
+      pointBackgroundColor: "#fff",
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(75,12,12,1)",
+      pointHoverBorderColor: "rgba(220,220,220,1)",
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data : [{% for item in temperatures %}
+                {{item}},
+              {% endfor %}],
+      spanGaps: false
+  }]
+}
+ 
+// get chart canvas
+var ctx = document.getElementById("temperature").getContext("2d");
+ 
+// create the chart using the chart canvas
+var temperature = new Chart(ctx, {
+  type: 'line',
+  data: chartData,
+});
+</script>
+
+
+
+<script >
+    // Global parameters:
+// do not resize the chart canvas when its container does (keep at 600x400px)
+Chart.defaults.global.responsive = false;
+ 
+// define the chart data
+var chartData = {
+  labels : [{% for item in labels %}
+             "{{item}}",
+            {% endfor %}],
+  datasets : [
+  {
+      label: '{{ legend2 }}',
+      fill: true,
+      lineTension: 0.1,
+      backgroundColor: "rgba(2,2,92,0.1)",
+      borderColor: "rgba(2,2,92,1)",
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: "rgba(2,2,92,1)",
+      pointBackgroundColor: "#fff",
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(2,2,92,1)",
+      pointHoverBorderColor: "rgba(220,220,220,1)",
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data : [{% for item in humidities %}
+                {{item}},
+              {% endfor %}],
+      spanGaps: false
+  }]
+}
+ 
+// get chart canvas
+var ctx = document.getElementById("humidity").getContext("2d");
+ 
+// create the chart using the chart canvas
+var humidity = new Chart(ctx, {
+  type: 'line',
+  data: chartData,
+});
+</script>
+
+
+
+<script >
+    // Global parameters:
+// do not resize the chart canvas when its container does (keep at 600x400px)
+Chart.defaults.global.responsive = false;
+ 
+// define the chart data
+var chartData = {
+  labels : [{% for item in labels %}
+             "{{item}}",
+            {% endfor %}],
+  datasets : [
+  {
+      label: '{{ legend3 }}',
+      fill: true,
+      lineTension: 0.1,
+      backgroundColor: "rgba(5,192,12,0.1)",
+      borderColor: "rgba(5,192,12,1)",
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: "rgba(5,192,12,1)",
+      pointBackgroundColor: "#fff",
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(5,192,12,1)",
+      pointHoverBorderColor: "rgba(220,220,220,1)",
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data : [{% for item in soilHumidities %}
+                {{item}},
+              {% endfor %}],
+      spanGaps: false
+  } ]
+}
+ 
+// get chart canvas
+var ctx = document.getElementById("soilHumidity").getContext("2d");
+ 
+// create the chart using the chart canvas
+var soilHumidity = new Chart(ctx, {
+  type: 'line',
+  data: chartData,
+});
+</script>
+{% endif %}
+
+{% endblock %}
+
+    <div class="container mt-5">
+    {% if estado == True %}
+        <a class=" btn btn-danger mt-5" href="/desactivarRiego/{{zona_id}}">Deactivate solenoid valve</a>
+    {% else %}
+        <a class=" btn btn-primary mt-5" href="/activarRiego/{{zona_id}}">Activate solenoid valve</a>
+
+    {% endif %}
+    </div>
+
+
+    {% else %}
+	    <h1 class="container">No sensor records in the irrigation zone</h1>
+    {% endif %}
+</div>
+
+
+{% endblock %}

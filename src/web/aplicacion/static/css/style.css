@@ -1,0 +1,70 @@
+
+body 
+{ 
+font: 62.5%/1.5  "Lucida Grande", "Lucida Sans", Tahoma, Verdana, sans-serif; 
+color: #22222;     
+text-align:center; 
+} 
+
+h1 
+{ 
+font-size: 2.2em; 
+} 
+ 
+h2 
+{ 
+font-size: 2.0em;     
+} 
+ 
+h3 
+{ 
+font-size: 1.8em; 
+} 
+ 
+h4 
+{ 
+font-size: 1.6em;     
+} 
+ 
+h5 
+{ 
+font-size: 1.4em;     
+} 
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+p 
+{ 
+font-size: 1.2em;     
+}
+
+
+main > .container {
+    padding: 60px 15px 0;
+  }
+  
+
+  .footer {
+    background-color: #afe2c8;
+  }
+  
+  .footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  code {
+    font-size: 80%;
+  }

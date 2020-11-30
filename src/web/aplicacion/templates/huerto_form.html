@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}{{titulo}}{% endblock %}
+
+{% block content %}
+
+    <div class="container col-lg-6 mt-5" >
+        <h1>
+            {{titulo}}
+        </h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.nombre.label }}
+                <br>
+                {{ form.nombre }}<br>
+                {% for error in form.nombre.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.direccion.label }}
+                <br>
+                {{ form.direccion }}<br>
+                {% for error in form.direccion.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div> 
+            <div class="form-group">
+                {{ form.codigoPostal.label }}
+                <br>
+                {{ form.codigoPostal }}<br>
+                {% for error in form.codigoPostal.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.localidad.label }}
+                <br>
+                {{ form.localidad }}<br>
+                {% for error in form.localidad.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.provincia.label }}
+                <br>
+                {{ form.provincia }}<br>
+                {% for error in form.provincia.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+        {% for error in errors %}
+                <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

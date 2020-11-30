@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Zona {{ zona }}{% endblock %}
+
+{% block content %}
+    <h2>Zona {{ zona}}</h2>
+
+    {% if registro %}
+        <h3>
+          {{registro.created}}
+        </h3>
+        
+         <table style="width:100%">
+            <tr>
+              <th>Temperatura</th>
+              <th>{{registro.temp}}</th>
+            </tr>
+            <tr>
+              <td>Humedad ambiental</td>
+              <td>{{registro.hum}}</td>
+            </tr>
+            <tr>
+              <td>Humedad terrestre</td>
+              <td>{{registro.soil}}</td>
+            </tr>
+          </table>  
+
+    {% else %}
+	    <p>No hay sensores en la zona></p>
+    {% endif %}
+{% endblock %}

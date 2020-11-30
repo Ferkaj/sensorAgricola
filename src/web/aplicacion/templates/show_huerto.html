@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}My farm{% endblock %}
+
+{% block content %}
+<div class="container col-lg-6" >
+  <h1 class="mt-5">
+    {{huerto.nombre}}
+  </h1>
+  <!-- <p class="lead">{{huerto.descripcion}}</p> -->
+
+  <ul class="py-5 list-group col-lg-5 text-center">
+    <li class="list-group-item lead">{{huerto.direccion}}</li>
+    <li class="list-group-item lead">{{huerto.codigoPostal}}</li>
+    <li class="list-group-item lead">{{huerto.localidad}}</li>
+    <li class="list-group-item lead">{{huerto.provincia}}</li>
+  </ul>
+
+</div>
+
+{% endblock %}

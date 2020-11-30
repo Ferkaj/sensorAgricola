@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}List of irrigation zones{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>List of irrigation zones</h1>
+
+    <ul class="py-5 list-group col-lg-6 text-center center-block container ">
+      
+          <li class="list-group-item lead">Here you can see your list of zones, access one of them to see more information about it</li>
+      
+    </ul>
+    
+
+  {% if zonas|length > 0 %}
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for z in zonas %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{z.nombre}}</td>
+          <td>{{z.descripcion}}</td>
+          <td> <a class=" btn btn-primary" href="/zona/{{z.id}}">Show</a><!--<a class=" btn btn-success" href="/editZona/{{z.id}}">Edit</a>-->  <a class=" btn btn-dark" href="/deleteZona/{{z.id}}">Delete</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  {% else %}
+  <div class="container row">
+  <h2 class="container"> You do not have any irrigation area.</h2>
+  
+ 
+  </div>
+  {% endif %}
+  
+  </div>
+  <div class="container">
+  <p class="lead container row">
+  <a class="btn btn-primary" href="/addZona/" role="button">create a irrigation zone </a>
+  </p>
+
+  </div>
+
+{% endblock %}
